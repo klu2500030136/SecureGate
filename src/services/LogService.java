@@ -6,15 +6,31 @@ import utils.DateTimeUtil;
 
 public class LogService {
 
-    private LogLinkedList logList = new LogLinkedList();
+    private LogLinkedList logList;
+
+    public LogService() {
+        logList = new LogLinkedList();
+    }
 
     public void recordLog(String userId, String zoneId, boolean granted) {
-        String time = DateTimeUtil.getCurrentTimestamp();
-        LogEntry log = new LogEntry(userId, zoneId, time, granted);
+
+        String timestamp = DateTimeUtil.getCurrentTimestamp();
+
+        LogEntry log = new LogEntry(
+                userId,
+                zoneId,
+                timestamp,
+                granted
+        );
+
         logList.addLog(log);
     }
 
     public void showLogs() {
         logList.displayLogs();
+    }
+
+    public int getTotalLogs() {
+        return logList.getSize();
     }
 }

@@ -22,13 +22,18 @@ public class LogEntry {
         return zoneId;
     }
 
+    public String getTimestamp() {
+        return timestamp;
+    }
+
     public boolean isAccessGranted() {
         return accessGranted;
     }
 
     @Override
     public String toString() {
-        return timestamp + " | User: " + userId +
+        return timestamp +
+                " | User: " + userId +
                 " | Zone: " + zoneId +
                 " | Access: " + (accessGranted ? "GRANTED" : "DENIED");
     }

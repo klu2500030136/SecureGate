@@ -10,6 +10,7 @@ public class LogLinkedList {
 
         Node(LogEntry data) {
             this.data = data;
+            this.next = null;
         }
     }
 
@@ -17,14 +18,33 @@ public class LogLinkedList {
     private int size;
 
     public void addLog(LogEntry log) {
+
         Node newNode = new Node(log);
-        newNode.next = head;
-        head = newNode;
+
+        if (head == null) {
+            head = newNode;
+        } else {
+            Node temp = head;
+
+            while (temp.next != null) {
+                temp = temp.next;
+            }
+
+            temp.next = newNode;
+        }
+
         size++;
     }
 
     public void displayLogs() {
+
+        if (head == null) {
+            System.out.println("No logs available.");
+            return;
+        }
+
         Node temp = head;
+
         while (temp != null) {
             System.out.println(temp.data);
             temp = temp.next;

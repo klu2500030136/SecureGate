@@ -4,11 +4,11 @@ import java.util.Scanner;
 import java.util.List;
 
 import datastructures.ZoneArray;
+import models.User;
 import services.AuthenticationService;
 import services.LogService;
-import models.User;
-import utils.InputValidator;
 import utils.FileHandler;
+import utils.InputValidator;
 
 public class SecureGateMain {
 
@@ -34,15 +34,17 @@ public class SecureGateMain {
             System.out.println("\n=== SecureGate System ===");
             System.out.println("1. Verify Access");
             System.out.println("2. Show Logs");
-            System.out.println("3. Exit");
-            System.out.print("Choose option: ");
+            System.out.println("3. Show Log Count");
+            System.out.println("4. Exit");
 
+            System.out.print("Choose option: ");
             int choice = sc.nextInt();
             sc.nextLine();
 
             switch (choice) {
 
                 case 1:
+
                     System.out.print("Enter Card ID: ");
                     String cardId = sc.nextLine();
 
@@ -51,6 +53,7 @@ public class SecureGateMain {
 
                     if (!InputValidator.isValidCardId(cardId)
                             || !InputValidator.isValidZone(zoneId)) {
+
                         System.out.println("Invalid input format.");
                         break;
                     }
@@ -68,6 +71,7 @@ public class SecureGateMain {
 
                     System.out.println(granted ?
                             "Access Granted" : "Access Denied");
+
                     break;
 
                 case 2:
@@ -75,12 +79,17 @@ public class SecureGateMain {
                     break;
 
                 case 3:
-                    System.out.println("Exiting...");
+                    System.out.println("Total Logs: "
+                            + logService.getTotalLogs());
+                    break;
+
+                case 4:
+                    System.out.println("System shutting down...");
                     sc.close();
                     return;
 
                 default:
-                    System.out.println("Invalid choice.");
+                    System.out.println("Invalid option.");
             }
         }
     }
