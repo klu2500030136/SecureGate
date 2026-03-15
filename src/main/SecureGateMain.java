@@ -12,6 +12,7 @@ import utils.InputValidator;
 import services.AlertService;
 
 import services.VisitorService;
+import services.GuardService;
 
 public class SecureGateMain {
 
@@ -34,6 +35,7 @@ public class SecureGateMain {
         LogService logService = new LogService();
 
         VisitorService visitorService = new VisitorService();
+        GuardService guardService = new GuardService();
 
         while (true) {
 
@@ -45,7 +47,9 @@ public class SecureGateMain {
             System.out.println("6. Register Visitor");
             System.out.println("7. Process Next Visitor");
             System.out.println("8. Show Visitor Queue");
-            System.out.println("9. Exit");
+            System.out.println("9. Show Current Guard");
+            System.out.println("10. Rotate Guard Shift");
+            System.out.println("11. Exit");
 
             System.out.print("Choose option: ");
             int choice = sc.nextInt();
@@ -121,6 +125,14 @@ public class SecureGateMain {
                     break;
 
                 case 9:
+                    guardService.showCurrentGuard();
+                    break;
+
+                case 10:
+                    guardService.startShiftRotation();
+                    break;
+
+                case 11:
                     System.out.println("System shutting down...");
                     sc.close();
                     return;
