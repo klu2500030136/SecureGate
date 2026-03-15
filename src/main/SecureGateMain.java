@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Scanner;
 import models.User;
 import services.AlertService;
+import services.AnalysisService;
 import services.AuthenticationService;
 import services.GuardService;
 import services.LogService;
@@ -37,6 +38,8 @@ public class SecureGateMain {
         GuardService guardService = new GuardService();
         RuleService ruleService = new RuleService();
 
+       AnalysisService analysisService =
+        new AnalysisService(logService.getLogList());
         while (true) {
 
           System.out.println("1. Verify Access");
@@ -52,7 +55,11 @@ System.out.println("10. Rotate Guard Shift");
 System.out.println("11. Change Access Rule");
 System.out.println("12. Undo Last Rule Change");
 System.out.println("13. Show Last Rule Change");
-System.out.println("14. Exit");
+
+System.out.println("14. Analyze Zone Access");
+System.out.println("15. Detect Suspicious Activity");
+System.out.println("16. Sort Logs by Time");
+System.out.println("17. Exit");
 
             System.out.print("Choose option: ");
             int choice = sc.nextInt();
@@ -155,6 +162,18 @@ case 13:
 
 
 case 14:
+    analysisService.analyzeZoneAccess();
+    break;
+
+case 15:
+    analysisService.detectSuspiciousActivity();
+    break;
+
+case 16:
+    analysisService.sortLogsByTime();
+    break;
+
+case 17:
     System.out.println("System shutting down...");
     sc.close();
     return;

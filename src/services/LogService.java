@@ -12,6 +12,10 @@ public class LogService {
         logList = new LogLinkedList();
     }
 
+    public LogLinkedList getLogList() {
+    return logList;
+}
+
     public void recordLog(String userId, String zoneId, boolean granted) {
 
         String timestamp = DateTimeUtil.getCurrentTimestamp();

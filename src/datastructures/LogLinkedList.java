@@ -14,6 +14,20 @@ public class LogLinkedList {
         }
     }
 
+    public java.util.List<LogEntry> getAllLogs() {
+
+    java.util.List<LogEntry> logs = new java.util.ArrayList<>();
+
+    Node temp = head;
+
+    while (temp != null) {
+        logs.add(temp.data);
+        temp = temp.next;
+    }
+
+    return logs;
+}
+
     private Node head;
     private int size;
 
